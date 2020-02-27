@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CarRepository extends CrudRepository<Car, Integer> {
 	public List<Car> findBytype(String type);
-
 	public List<Car> findBymodelname(String modelname);
 
 	@Query("from Car where costPerDay <= :costPerDay")
