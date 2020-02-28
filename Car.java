@@ -3,14 +3,10 @@ package com.ito.carRental;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
-
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "cars")
@@ -45,23 +41,18 @@ public class Car {
 
 	@Column(name = "contact_email_address")
 	private String contact_email_address;
-	//unidirectional mapping
-	/*
-	 * @JoinColumn(name="bookingid" ,insertable = false, updatable =
-	 * false,referencedColumnName="bookingid")
-	 * 
-	 * @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY) private
-	 * CarBooking carBooking;
-	 * 
-	 * 
-	 * 
-	 * public CarBooking getCarBooking() { return carBooking; }
-	 * 
-	 * public void setCarBooking(CarBooking carBooking) { this.carBooking =
-	 * carBooking;
-	 * }
-	 */
 	
+	@Transient
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private CarBooking carBooking;
+
+	public CarBooking getCarBooking() {
+		return carBooking;
+	}
+
+	public void setCarBooking(CarBooking carBooking) {
+		this.carBooking = carBooking;
+	}
 
 	public Integer getCar_id() {
 		return car_id;
@@ -103,7 +94,6 @@ public class Car {
 		this.seating_capacity = seating_capacity;
 	}
 
-	
 	public Double getCostPerDay() {
 		return costPerDay;
 	}
@@ -149,10 +139,7 @@ public class Car {
 		return "Car [car_id=" + car_id + ", type=" + type + ", modelname=" + modelname + ", year_of_registration="
 				+ year_of_registration + ", seating_capacity=" + seating_capacity + ", costPerDay=" + costPerDay
 				+ ", mileage=" + mileage + ", pin_code=" + pin_code + ", contact_number=" + contact_number
-				+ ", contact_email_address=" + contact_email_address +  "]";
+				+ ", contact_email_address=" + contact_email_address + "]";
 	}
-
-	
-	
 
 }

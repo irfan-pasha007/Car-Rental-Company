@@ -48,31 +48,32 @@ public class CarController {
 
 	}
 
-    //Delete car details
+	// Delete car details
 	@RequestMapping(method = RequestMethod.DELETE, value = "/cars/{car_id}")
 	public void deletecar(@PathVariable Integer car_id) {
 		carService.deleteCar(car_id);
 	}
-		
-	//search car based on car type
-		@RequestMapping(method = RequestMethod.GET, value = "/cars/search/type/{type}")
-		public List<Car> getcartype(@PathVariable String type) {
-			return carService.getCartype(type);
-		}
-			
-	//search car based on car model
-		@RequestMapping(method = RequestMethod.GET, value = "/cars/search/model/{modelname}")
-	    public List<Car> getbymodelname(@PathVariable String modelname)
-		{
-				return carService.getByModelName(modelname);
+
+	// search car based on car type
+	@RequestMapping(method = RequestMethod.GET, value = "/cars/search/type/{type}")
+	public List<Car> getcartype(@PathVariable String type) {
+		return carService.getCartype(type);
+	}
+
+	// search car based on car model
+	@RequestMapping(method = RequestMethod.GET, value = "/cars/search/model/{modelname}")
+	public List<Car> getbymodelname(@PathVariable String modelname) {
+		return carService.getByModelName(modelname);
 
 	}
-		//search car whose cost per day is <= given cost per day
-		@RequestMapping(method = RequestMethod.GET, value = "/cars/search/costlessthan/{costPerDay}")
-	    public List<Car> getbycostperday(@PathVariable Double costPerDay) {
-				return carService.getByCostPerDay(costPerDay);
+
+	// search car whose cost per day is <= given cost per day
+	@RequestMapping(method = RequestMethod.GET, value = "/cars/search/costlessthan/{costPerDay}")
+	public List<Car> getbycostperday(@PathVariable Double costPerDay) {
+		return carService.getByCostPerDay(costPerDay);
 
 	}
-		
+	
+
 
 }
